@@ -677,7 +677,7 @@ const HTML = `<!DOCTYPE html>
     <!-- SYLLABUS TRACK SELECTOR -->
     <div style="margin-bottom:24px;">
       <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;">Syllabus / Curriculum Track</label>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;" id="syllabusSelector">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;" id="syllabusSelector">
         <button class="syllabus-btn active" data-syllabus="SPN21" onclick="selectSyllabus(this)">
           <span style="font-size:20px;display:block;margin-bottom:4px;">🇧🇳</span>
           <strong>SPN21</strong>
@@ -692,6 +692,11 @@ const HTML = `<!DOCTYPE html>
           <span style="font-size:20px;display:block;margin-bottom:4px;">📗</span>
           <strong>O-Level</strong>
           <span style="display:block;font-size:11px;opacity:0.65;margin-top:2px;font-weight:400;">BC GCE</span>
+        </button>
+        <button class="syllabus-btn" data-syllabus="ALevel" onclick="selectSyllabus(this)">
+          <span style="font-size:20px;display:block;margin-bottom:4px;">🎓</span>
+          <strong>A-Level</strong>
+          <span style="display:block;font-size:11px;opacity:0.65;margin-top:2px;font-weight:400;">Pre-U / Sixth Form</span>
         </button>
       </div>
       <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px;letter-spacing:0.04em;line-height:1.5;">
@@ -714,11 +719,11 @@ const HTML = `<!DOCTYPE html>
         <label>Form Level</label>
         <select id="level">
           <option value="">— Pick level —</option>
-          <option value="Form 1">Form 1</option>
-          <option value="Form 2">Form 2</option>
-          <option value="Form 3">Form 3</option>
-          <option value="Form 4">Form 4</option>
-          <option value="Form 5">Form 5</option>
+          <option value="Year 1">Year 1</option>
+          <option value="Year 2">Year 2</option>
+          <option value="Year 3">Year 3</option>
+          <option value="Year 4">Year 4</option>
+          <option value="Year 5">Year 5</option>
         </select>
       </div>
 
@@ -830,57 +835,10 @@ const HTML = `<!DOCTYPE html>
   </div>
 </div>
 
-<!-- PRICING -->
-<div class="pricing-strip">
-  <h2>SIMPLE PRICING</h2>
-  <p class="sub">No hidden fees. Cancel anytime. Built for Brunei students fr fr.</p>
-  <div class="pricing-cards">
-
-    <div class="p-card">
-      <div class="p-tier">Free</div>
-      <div class="p-amount">BND 0</div>
-      <div class="p-muted">forever</div>
-      <ul class="p-features">
-        <li>3 worksheets / month</li>
-        <li>English only</li>
-        <li>2 subjects</li>
-        <li>PDF download</li>
-      </ul>
-    </div>
-
-    <div class="p-card featured">
-      <div class="p-badge">Most Popular</div>
-      <div class="p-tier">Pro</div>
-      <div class="p-amount">BND 15</div>
-      <div class="p-muted">per month</div>
-      <ul class="p-features">
-        <li>Unlimited worksheets</li>
-        <li>English + Bahasa Melayu</li>
-        <li>All subjects</li>
-        <li>Answer keys included</li>
-        <li>Shareable links</li>
-      </ul>
-    </div>
-
-    <div class="p-card">
-      <div class="p-tier">Centre</div>
-      <div class="p-amount">BND 45</div>
-      <div class="p-muted">per month</div>
-      <ul class="p-features">
-        <li>5 tutor seats</li>
-        <li>All Pro features</li>
-        <li>Custom branding</li>
-        <li>Priority support</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">GRADE<span>MAXING</span></div>
-  <div class="footer-copy">Max Your Grades. No Cap. 🔥 — Brunei 🇧🇳 2026</div>
+  <div class="footer-copy">Max Your Grades. — Brunei 🇧🇳 2026</div>
 </footer>
 
 <script>
@@ -899,145 +857,197 @@ const HTML = `<!DOCTYPE html>
   const SUBJECTS = {
     SPN21:  ['Mathematics','English Language','Bahasa Melayu','Combined Science','Islamic Religious Knowledge','History','Geography'],
     IGCSE:  ['Mathematics','English Language','Biology','Chemistry','Physics','History','Geography','Business Studies','ICT'],
-    OLevel: ['Mathematics','English Language','Bahasa Melayu','Biology','Chemistry','Physics','Islamic Religious Knowledge','History','Geography','Commerce']
+    OLevel: ['Mathematics','English Language','Bahasa Melayu','Biology','Chemistry','Physics','Islamic Religious Knowledge','History','Geography','Commerce'],
+    ALevel: ['Mathematics','Further Mathematics','Biology','Chemistry','Physics','Economics','Business','Accounting','History','Geography','English Literature','Computer Science']
   };
 
   const CHAPTERS = {
     SPN21: {
       'Mathematics': {
-        'Form 1': ['Whole Numbers','Number Patterns and Sequences','Fractions','Decimals','Percentages','Integers','Algebraic Expressions','Linear Equations','Ratios, Rates and Proportions','Basic Geometry','Perimeter and Area','Introduction to Statistics'],
-        'Form 2': ['Directed Numbers','Squares, Square Roots, Cubes and Cube Roots','Algebraic Expressions II','Linear Equations II','Ratios, Rates and Proportions II','Pythagoras Theorem','Geometrical Constructions','Coordinates','Circles','Transformations','Statistics II'],
-        'Form 3': ['Lines and Angles','Polygons','Circles II','Indices','Algebraic Expressions III','Algebraic Formulae','Linear Inequalities','Graphs of Functions','Trigonometry','Angles of Elevation and Depression','Statistics III'],
-        'Form 4': ['Quadratic Expressions and Equations','Sets','Mathematical Reasoning','Straight Lines','Statistics IV','Probability I','Circles III','Trigonometry II','Plans and Elevations'],
-        'Form 5': ['Number Bases','Graphs of Functions II','Transformations III','Matrices','Variations','Gradient and Area under a Graph','Probability II','Bearing','Earth as a Sphere','Plans and Elevations II']
+        'Year 1': ['Whole Numbers','Number Patterns and Sequences','Fractions','Decimals','Percentages','Integers','Algebraic Expressions','Linear Equations','Ratios, Rates and Proportions','Basic Geometry','Perimeter and Area','Introduction to Statistics'],
+        'Year 2': ['Directed Numbers','Squares, Square Roots, Cubes and Cube Roots','Algebraic Expressions II','Linear Equations II','Ratios, Rates and Proportions II','Pythagoras Theorem','Geometrical Constructions','Coordinates','Circles','Transformations','Statistics II'],
+        'Year 3': ['Lines and Angles','Polygons','Circles II','Indices','Algebraic Expressions III','Algebraic Formulae','Linear Inequalities','Graphs of Functions','Trigonometry','Angles of Elevation and Depression','Statistics III'],
+        'Year 4': ['Quadratic Expressions and Equations','Sets','Mathematical Reasoning','Straight Lines','Statistics IV','Probability I','Circles III','Trigonometry II','Plans and Elevations'],
+        'Year 5': ['Number Bases','Graphs of Functions II','Transformations III','Matrices','Variations','Gradient and Area under a Graph','Probability II','Bearing','Earth as a Sphere','Plans and Elevations II']
       },
       'English Language': {
-        'Form 1': ['Reading Comprehension — Narrative','Vocabulary in Context','Grammar: Nouns and Pronouns','Grammar: Verbs and Tenses','Grammar: Adjectives and Adverbs','Writing: Informal Letters','Writing: Descriptive Paragraphs','Spelling and Punctuation'],
-        'Form 2': ['Reading Comprehension — Descriptive','Vocabulary Building','Grammar: Prepositions and Conjunctions','Grammar: Reported Speech','Grammar: Passive Voice','Writing: Formal Letters','Writing: Narrative Essays','Summary Writing'],
-        'Form 3': ['Reading Comprehension — Argumentative','Advanced Vocabulary','Grammar: Conditionals','Grammar: Relative Clauses','Grammar: Modal Verbs','Writing: Argumentative Essays','Writing: Report Writing','Note-taking Skills'],
-        'Form 4': ['Literature: Short Stories','Literature: Poetry','Essay Writing: Discursive','Essay Writing: Descriptive','Grammar Revision','Directed Writing','Summary and Response','Oral Skills'],
-        'Form 5': ['Literature: Novel Study','Advanced Essay Writing','Critical Reading','Paper 1 — Reading Revision','Paper 2 — Writing Revision','Directed Writing Revision','Grammar Consolidation','Examination Preparation']
+        'Year 1': ['Reading Comprehension — Narrative','Vocabulary in Context','Grammar: Nouns and Pronouns','Grammar: Verbs and Tenses','Grammar: Adjectives and Adverbs','Writing: Informal Letters','Writing: Descriptive Paragraphs','Spelling and Punctuation'],
+        'Year 2': ['Reading Comprehension — Descriptive','Vocabulary Building','Grammar: Prepositions and Conjunctions','Grammar: Reported Speech','Grammar: Passive Voice','Writing: Formal Letters','Writing: Narrative Essays','Summary Writing'],
+        'Year 3': ['Reading Comprehension — Argumentative','Advanced Vocabulary','Grammar: Conditionals','Grammar: Relative Clauses','Grammar: Modal Verbs','Writing: Argumentative Essays','Writing: Report Writing','Note-taking Skills'],
+        'Year 4': ['Literature: Short Stories','Literature: Poetry','Essay Writing: Discursive','Essay Writing: Descriptive','Grammar Revision','Directed Writing','Summary and Response','Oral Skills'],
+        'Year 5': ['Literature: Novel Study','Advanced Essay Writing','Critical Reading','Paper 1 — Reading Revision','Paper 2 — Writing Revision','Directed Writing Revision','Grammar Consolidation','Examination Preparation']
       },
       'Bahasa Melayu': {
-        'Form 1': ['Teks Rencana','Teks Cerita','Teks Berita','Tatabahasa: Kata Nama','Tatabahasa: Kata Kerja','Tatabahasa: Kata Adjektif','Penulisan: Karangan Penceritaan','Penulisan: Karangan Deskriptif','Peribahasa Asas','Ejaan dan Tanda Baca'],
-        'Form 2': ['Teks Ulasan','Teks Surat Rasmi','Teks Dialog','Tatabahasa: Kata Hubung','Tatabahasa: Ayat Majmuk','Tatabahasa: Imbuhan Awalan','Penulisan: Karangan Imaginatif','Penulisan: Surat Kiriman','Peribahasa','Pemahaman dan Rumusan'],
-        'Form 3': ['Teks Ucapan','Teks Laporan','Teks Autobiografi','Tatabahasa: Imbuhan Akhiran','Tatabahasa: Kata Ganda','Tatabahasa: Ayat Pasif dan Aktif','Penulisan: Karangan Fakta','Simpulan Bahasa','Kemahiran Lisan'],
-        'Form 4': ['Komsas: Puisi Tradisional','Komsas: Cerpen','Komsas: Drama','Tatabahasa Tinggi','Penulisan: Karangan Berformat','Penulisan: Karangan Tidak Berformat','Pemahaman Petikan','Rumusan','Lisan dan Sebutan'],
-        'Form 5': ['Komsas: Novel','Komsas: Prosa Tradisional','Komsas: Puisi Moden','Ulasan Komsas','Penulisan Lanjutan','Tatabahasa Komprehensif','Pemahaman Peringkat Tinggi','Rumusan Lanjutan','Persediaan Peperiksaan']
+        'Year 1': ['Teks Rencana','Teks Cerita','Teks Berita','Tatabahasa: Kata Nama','Tatabahasa: Kata Kerja','Tatabahasa: Kata Adjektif','Penulisan: Karangan Penceritaan','Penulisan: Karangan Deskriptif','Peribahasa Asas','Ejaan dan Tanda Baca'],
+        'Year 2': ['Teks Ulasan','Teks Surat Rasmi','Teks Dialog','Tatabahasa: Kata Hubung','Tatabahasa: Ayat Majmuk','Tatabahasa: Imbuhan Awalan','Penulisan: Karangan Imaginatif','Penulisan: Surat Kiriman','Peribahasa','Pemahaman dan Rumusan'],
+        'Year 3': ['Teks Ucapan','Teks Laporan','Teks Autobiografi','Tatabahasa: Imbuhan Akhiran','Tatabahasa: Kata Ganda','Tatabahasa: Ayat Pasif dan Aktif','Penulisan: Karangan Fakta','Simpulan Bahasa','Kemahiran Lisan'],
+        'Year 4': ['Komsas: Puisi Tradisional','Komsas: Cerpen','Komsas: Drama','Tatabahasa Tinggi','Penulisan: Karangan Berformat','Penulisan: Karangan Tidak Berformat','Pemahaman Petikan','Rumusan','Lisan dan Sebutan'],
+        'Year 5': ['Komsas: Novel','Komsas: Prosa Tradisional','Komsas: Puisi Moden','Ulasan Komsas','Penulisan Lanjutan','Tatabahasa Komprehensif','Pemahaman Peringkat Tinggi','Rumusan Lanjutan','Persediaan Peperiksaan']
       },
       'Combined Science': {
-        'Form 1': ['Introduction to Science','Matter and Properties','Elements, Compounds and Mixtures','Cells — Basic Unit of Life','Human Body Systems','Plant Life','Forces and Motion','Energy','Light and Sound','Earth and Universe'],
-        'Form 2': ['Nutrition and Digestion','Respiration','Reproduction','Ecosystems','Chemical Reactions','Acids, Bases and Salts','Electricity','Magnetism','Waves','Weather and Climate'],
-        'Form 3': ['Genetics and Heredity','Periodic Table','Chemical Bonds','Organic Chemistry Basics','Heat','Pressure','Motion and Forces II','Environmental Science','Revision']
+        'Year 1': ['Introduction to Science','Matter and Properties','Elements, Compounds and Mixtures','Cells — Basic Unit of Life','Human Body Systems','Plant Life','Forces and Motion','Energy','Light and Sound','Earth and Universe'],
+        'Year 2': ['Nutrition and Digestion','Respiration','Reproduction','Ecosystems','Chemical Reactions','Acids, Bases and Salts','Electricity','Magnetism','Waves','Weather and Climate'],
+        'Year 3': ['Genetics and Heredity','Periodic Table','Chemical Bonds','Organic Chemistry Basics','Heat','Pressure','Motion and Forces II','Environmental Science','Revision']
       },
       'Islamic Religious Knowledge': {
-        'Form 1': ['Aqidah: Rukun Iman','Ibadah: Rukun Islam','Ibadah: Solat Fardhu','Ibadah: Puasa Ramadhan','Akhlak: Sifat Mahmudah','Al-Quran: Surah Pilihan','Sirah: Nabi Muhammad SAW','Fiqh: Bersuci dan Wudhu'],
-        'Form 2': ['Aqidah: Sifat-sifat Allah','Ibadah: Zakat','Ibadah: Haji dan Umrah','Al-Quran: Tafsir','Sirah: Khulafa Ar-Rasyidin','Akhlak: Adab Harian','Fiqh: Kekeluargaan','Muamalat: Prinsip Asas'],
-        'Form 3': ['Aqidah: Qada dan Qadar','Ibadah: Jenazah','Al-Quran: Ulumul Quran','Hadith: Hadith Pilihan','Sirah: Tamadun Islam','Akhlak: Akhlak Masyarakat','Fiqh: Jual Beli'],
-        'Form 4': ['Aqidah Lanjutan','Ibadah Lanjutan','Fiqh Muamalat','Al-Quran dan Tafsir Lanjutan','Hadith dan Ulumul Hadith','Sirah Lanjutan','Undang-undang Islam'],
-        'Form 5': ['Aqidah: Ulangkaji','Ibadah: Ulangkaji','Fiqh Lanjutan','Sirah dan Tamadun Islam','Al-Quran: Hafazan dan Tafsir','Akhlak Mulia','Persediaan Peperiksaan']
+        'Year 1': ['Aqidah: Rukun Iman','Ibadah: Rukun Islam','Ibadah: Solat Fardhu','Ibadah: Puasa Ramadhan','Akhlak: Sifat Mahmudah','Al-Quran: Surah Pilihan','Sirah: Nabi Muhammad SAW','Fiqh: Bersuci dan Wudhu'],
+        'Year 2': ['Aqidah: Sifat-sifat Allah','Ibadah: Zakat','Ibadah: Haji dan Umrah','Al-Quran: Tafsir','Sirah: Khulafa Ar-Rasyidin','Akhlak: Adab Harian','Fiqh: Kekeluargaan','Muamalat: Prinsip Asas'],
+        'Year 3': ['Aqidah: Qada dan Qadar','Ibadah: Jenazah','Al-Quran: Ulumul Quran','Hadith: Hadith Pilihan','Sirah: Tamadun Islam','Akhlak: Akhlak Masyarakat','Fiqh: Jual Beli'],
+        'Year 4': ['Aqidah Lanjutan','Ibadah Lanjutan','Fiqh Muamalat','Al-Quran dan Tafsir Lanjutan','Hadith dan Ulumul Hadith','Sirah Lanjutan','Undang-undang Islam'],
+        'Year 5': ['Aqidah: Ulangkaji','Ibadah: Ulangkaji','Fiqh Lanjutan','Sirah dan Tamadun Islam','Al-Quran: Hafazan dan Tafsir','Akhlak Mulia','Persediaan Peperiksaan']
       },
       'History': {
-        'Form 1': ['Early Human Civilisations','Ancient Civilisations of Asia','Coming of Islam','Malay Sultanates','Colonial Era in Southeast Asia','Brunei: Early Kingdom','Brunei: Sultanate Period','Brunei and Colonial Powers'],
-        'Form 2': ['Industrial Revolution','World War I','Rise of Nationalism in Asia','Southeast Asian Nationalism','World War II','Japanese Occupation','Post-War Decolonisation','Formation of Nation States'],
-        'Form 3': ['The Cold War','Southeast Asia Post-Independence','Formation of Malaysia','Brunei\\u2019s Path to Independence','Brunei Darussalam \\u2014 The Nation','ASEAN','Globalisation','Contemporary World Issues'],
-        'Form 4': ['Brunei History — In Depth','British Influence in Brunei','Brunei Revolt 1962','Road to Independence','Wawasan Brunei 2035','Government and Constitution','Economy of Brunei'],
-        'Form 5': ['Revision: Ancient to Colonial','Revision: World Wars','Revision: Nationalism','Revision: Brunei History','Essay Techniques','Source-based Questions','Examination Preparation']
+        'Year 1': ['Early Human Civilisations','Ancient Civilisations of Asia','Coming of Islam','Malay Sultanates','Colonial Era in Southeast Asia','Brunei: Early Kingdom','Brunei: Sultanate Period','Brunei and Colonial Powers'],
+        'Year 2': ['Industrial Revolution','World War I','Rise of Nationalism in Asia','Southeast Asian Nationalism','World War II','Japanese Occupation','Post-War Decolonisation','Formation of Nation States'],
+        'Year 3': ['The Cold War','Southeast Asia Post-Independence','Formation of Malaysia','Brunei\\u2019s Path to Independence','Brunei Darussalam \\u2014 The Nation','ASEAN','Globalisation','Contemporary World Issues'],
+        'Year 4': ['Brunei History — In Depth','British Influence in Brunei','Brunei Revolt 1962','Road to Independence','Wawasan Brunei 2035','Government and Constitution','Economy of Brunei'],
+        'Year 5': ['Revision: Ancient to Colonial','Revision: World Wars','Revision: Nationalism','Revision: Brunei History','Essay Techniques','Source-based Questions','Examination Preparation']
       },
       'Geography': {
-        'Form 1': ['Maps and Mapwork','The Earth\\u2019s Structure','Weather and Climate','Water Cycle and Rivers','Coasts','Population','Settlement','Agriculture'],
-        'Form 2': ['Plate Tectonics and Earthquakes','Volcanoes','Tropical Rainforests','Deserts','Tourism','Industry','Transport','Environmental Issues'],
-        'Form 3': ['Brunei Geography','Southeast Asian Geography','Economic Development','Energy Resources','Food Security','Urbanisation','Sustainable Development'],
-        'Form 4': ['Physical Geography Revision','Human Geography Revision','Brunei in Depth','Regional Geography: Asia','Environmental Management','Geographical Skills'],
-        'Form 5': ['Paper 1: Physical Geography','Paper 2: Human Geography','Mapwork and Practical Skills','Case Studies Review','Essay Writing in Geography','Examination Preparation']
+        'Year 1': ['Maps and Mapwork','The Earth\\u2019s Structure','Weather and Climate','Water Cycle and Rivers','Coasts','Population','Settlement','Agriculture'],
+        'Year 2': ['Plate Tectonics and Earthquakes','Volcanoes','Tropical Rainforests','Deserts','Tourism','Industry','Transport','Environmental Issues'],
+        'Year 3': ['Brunei Geography','Southeast Asian Geography','Economic Development','Energy Resources','Food Security','Urbanisation','Sustainable Development'],
+        'Year 4': ['Physical Geography Revision','Human Geography Revision','Brunei in Depth','Regional Geography: Asia','Environmental Management','Geographical Skills'],
+        'Year 5': ['Paper 1: Physical Geography','Paper 2: Human Geography','Mapwork and Practical Skills','Case Studies Review','Essay Writing in Geography','Examination Preparation']
       }
     },
 
     IGCSE: {
       'Mathematics': {
-        'Form 1': ['Number: Types and Operations','Algebra: Introduction','Geometry: Lines and Angles','Measures and Mensuration','Statistics: Data Collection','Ratio and Proportion','Fractions, Decimals, Percentages'],
-        'Form 2': ['Algebra: Expressions and Equations','Geometry: Triangles and Polygons','Pythagoras Theorem','Graphs and Functions','Probability: Basic Concepts','Statistics: Charts and Averages'],
-        'Form 3': ['Algebra: Quadratics','Trigonometry: Sine, Cosine, Tangent','Circle Theorems','Vectors','Matrices','Transformation Geometry','Statistics: Cumulative Frequency'],
-        'Form 4': ['Further Algebra','Further Trigonometry','Further Statistics','Calculus: Differentiation Intro','Set Language and Notation','Indices and Surds','Coordinate Geometry'],
-        'Form 5': ['Exam Revision: Number and Algebra','Exam Revision: Geometry','Exam Revision: Statistics and Probability','Paper 1 Practice (Non-calculator)','Paper 2 Practice (Calculator)','Worked Solutions and Marking']
+        'Year 1': ['Number: Types and Operations','Algebra: Introduction','Geometry: Lines and Angles','Measures and Mensuration','Statistics: Data Collection','Ratio and Proportion','Fractions, Decimals, Percentages'],
+        'Year 2': ['Algebra: Expressions and Equations','Geometry: Triangles and Polygons','Pythagoras Theorem','Graphs and Functions','Probability: Basic Concepts','Statistics: Charts and Averages'],
+        'Year 3': ['Algebra: Quadratics','Trigonometry: Sine, Cosine, Tangent','Circle Theorems','Vectors','Matrices','Transformation Geometry','Statistics: Cumulative Frequency'],
+        'Year 4': ['Further Algebra','Further Trigonometry','Further Statistics','Calculus: Differentiation Intro','Set Language and Notation','Indices and Surds','Coordinate Geometry'],
+        'Year 5': ['Exam Revision: Number and Algebra','Exam Revision: Geometry','Exam Revision: Statistics and Probability','Paper 1 Practice (Non-calculator)','Paper 2 Practice (Calculator)','Worked Solutions and Marking']
       },
       'English Language': {
-        'Form 1': ['Reading: Skimming and Scanning','Reading: Inference Skills','Writing: Sentence Variety','Writing: Paragraphing','Vocabulary: Context Clues','Grammar: Tenses Review'],
-        'Form 2': ['Reading: Summary Skills','Reading: Writer\\u2019s Craft','Writing: Descriptive Pieces','Writing: Narrative Pieces','Vocabulary: Figurative Language','Grammar: Complex Sentences'],
-        'Form 3': ['Reading: Argumentative Texts','Directed Writing: Reports','Directed Writing: Articles','Directed Writing: Letters','Extended Writing: Essays','Comprehension Strategies'],
-        'Form 4': ['Paper 1: Reading Passages','Paper 1: Directed Writing','Paper 2: Extended Writing','Transactional Writing Formats','Language Analysis','Exam Skills and Timing'],
-        'Form 5': ['Past Paper Practice: Paper 1','Past Paper Practice: Paper 2','Common Errors and Corrections','Register and Audience','Examination Preparation','Marking Criteria Review']
+        'Year 1': ['Reading: Skimming and Scanning','Reading: Inference Skills','Writing: Sentence Variety','Writing: Paragraphing','Vocabulary: Context Clues','Grammar: Tenses Review'],
+        'Year 2': ['Reading: Summary Skills','Reading: Writer\\u2019s Craft','Writing: Descriptive Pieces','Writing: Narrative Pieces','Vocabulary: Figurative Language','Grammar: Complex Sentences'],
+        'Year 3': ['Reading: Argumentative Texts','Directed Writing: Reports','Directed Writing: Articles','Directed Writing: Letters','Extended Writing: Essays','Comprehension Strategies'],
+        'Year 4': ['Paper 1: Reading Passages','Paper 1: Directed Writing','Paper 2: Extended Writing','Transactional Writing Formats','Language Analysis','Exam Skills and Timing'],
+        'Year 5': ['Past Paper Practice: Paper 1','Past Paper Practice: Paper 2','Common Errors and Corrections','Register and Audience','Examination Preparation','Marking Criteria Review']
       },
       'Biology': {
-        'Form 4': ['Cell Structure and Organisation','Biological Molecules','Enzymes','Cell Membranes and Transport','Mitosis and the Cell Cycle','Nutrition in Humans','Nutrition in Plants','Respiration'],
-        'Form 5': ['Gas Exchange','Excretion','Coordination and Response','Hormones','Homeostasis','Reproduction','Inheritance and Genetics','Evolution and Biodiversity']
+        'Year 4': ['Cell Structure and Organisation','Biological Molecules','Enzymes','Cell Membranes and Transport','Mitosis and the Cell Cycle','Nutrition in Humans','Nutrition in Plants','Respiration'],
+        'Year 5': ['Gas Exchange','Excretion','Coordination and Response','Hormones','Homeostasis','Reproduction','Inheritance and Genetics','Evolution and Biodiversity']
       },
       'Chemistry': {
-        'Form 4': ['Particles and Atomic Structure','Formula, Equations and Amounts','Electrons and Bonding','Energetics','Rates of Reaction','Reversible Reactions and Equilibrium','Acids, Bases and Salts'],
-        'Form 5': ['The Periodic Table','Group 1 and Group 7','Transition Metals','Extracting Metals','Organic Chemistry: Alkanes and Alkenes','Alcohols and Carboxylic Acids','Polymers and Polymerisation']
+        'Year 4': ['Particles and Atomic Structure','Formula, Equations and Amounts','Electrons and Bonding','Energetics','Rates of Reaction','Reversible Reactions and Equilibrium','Acids, Bases and Salts'],
+        'Year 5': ['The Periodic Table','Group 1 and Group 7','Transition Metals','Extracting Metals','Organic Chemistry: Alkanes and Alkenes','Alcohols and Carboxylic Acids','Polymers and Polymerisation']
       },
       'Physics': {
-        'Form 4': ['Motion','Forces','Momentum','Work, Energy and Power','Pressure','Thermal Energy','Waves and Sound'],
-        'Form 5': ['Light and Optics','Electrostatics','Current and Resistance','Circuits','Electromagnetism','Space Physics','Radioactivity and Nuclear Energy']
+        'Year 4': ['Motion','Forces','Momentum','Work, Energy and Power','Pressure','Thermal Energy','Waves and Sound'],
+        'Year 5': ['Light and Optics','Electrostatics','Current and Resistance','Circuits','Electromagnetism','Space Physics','Radioactivity and Nuclear Energy']
       },
       'History': {
-        'Form 4': ['World War I: Causes','World War I: Events and Outcomes','Rise of Dictators: Stalin','Rise of Dictators: Hitler','Rise of Dictators: Mussolini','League of Nations','Road to World War II'],
-        'Form 5': ['World War II: Key Events','The Cold War','Korean War and Vietnam War','Cuban Missile Crisis','End of Cold War','Source-based Skills','Examination Preparation']
+        'Year 4': ['World War I: Causes','World War I: Events and Outcomes','Rise of Dictators: Stalin','Rise of Dictators: Hitler','Rise of Dictators: Mussolini','League of Nations','Road to World War II'],
+        'Year 5': ['World War II: Key Events','The Cold War','Korean War and Vietnam War','Cuban Missile Crisis','End of Cold War','Source-based Skills','Examination Preparation']
       },
       'Geography': {
-        'Form 4': ['Population Dynamics','Migration','Settlement and Urbanisation','Economic Activity','Agricultural Systems','Industrial Systems','Tourism'],
-        'Form 5': ['Hazardous Environments','Coasts','Rivers','Energy and Water Resources','Environmental Management','Geographical Investigation Skills','Examination Preparation']
+        'Year 4': ['Population Dynamics','Migration','Settlement and Urbanisation','Economic Activity','Agricultural Systems','Industrial Systems','Tourism'],
+        'Year 5': ['Hazardous Environments','Coasts','Rivers','Energy and Water Resources','Environmental Management','Geographical Investigation Skills','Examination Preparation']
       },
       'Business Studies': {
-        'Form 4': ['Business Activity and Objectives','Types of Business Organisation','Business Stakeholders','Business Communication','Production and Productivity','Marketing: Concepts and Mix'],
-        'Form 5': ['Financial Information','Sources of Finance','Human Resources','Business and its Environment','Marketing Research','Examination Preparation']
+        'Year 4': ['Business Activity and Objectives','Types of Business Organisation','Business Stakeholders','Business Communication','Production and Productivity','Marketing: Concepts and Mix'],
+        'Year 5': ['Financial Information','Sources of Finance','Human Resources','Business and its Environment','Marketing Research','Examination Preparation']
       },
       'ICT': {
-        'Form 4': ['Hardware and Software','Input and Output Devices','Storage','Networks and the Internet','Data Representation','Databases','Spreadsheets'],
-        'Form 5': ['Programming Concepts','Algorithms and Flowcharts','Systems Analysis and Design','Security and Privacy','Impact of ICT on Society','Examination Preparation']
+        'Year 4': ['Hardware and Software','Input and Output Devices','Storage','Networks and the Internet','Data Representation','Databases','Spreadsheets'],
+        'Year 5': ['Programming Concepts','Algorithms and Flowcharts','Systems Analysis and Design','Security and Privacy','Impact of ICT on Society','Examination Preparation']
       }
     },
 
     OLevel: {
       'Mathematics': {
-        'Form 4': ['Numbers and Computation','Algebraic Manipulation','Functions and Graphs','Geometry: Circles and Polygons','Trigonometry','Statistics and Probability','Vectors in 2D'],
-        'Form 5': ['Further Algebra: Quadratics','Further Trigonometry','Further Statistics','Coordinate Geometry','Applications of Mathematics','Paper 1 and 2 Revision','Examination Preparation']
+        'Year 4': ['Numbers and Computation','Algebraic Manipulation','Functions and Graphs','Geometry: Circles and Polygons','Trigonometry','Statistics and Probability','Vectors in 2D'],
+        'Year 5': ['Further Algebra: Quadratics','Further Trigonometry','Further Statistics','Coordinate Geometry','Applications of Mathematics','Paper 1 and 2 Revision','Examination Preparation']
       },
       'English Language': {
-        'Form 4': ['Comprehension: Factual and Inferential','Summary Writing','Directed Writing: Transactional','Composition Writing','Language and Grammar','Oral: Reading Aloud and Conversation'],
-        'Form 5': ['Paper 1 Revision','Paper 2 Revision','Comprehension Strategies','Writing Accuracy and Style','Vocabulary in Use','Examination Preparation']
+        'Year 4': ['Comprehension: Factual and Inferential','Summary Writing','Directed Writing: Transactional','Composition Writing','Language and Grammar','Oral: Reading Aloud and Conversation'],
+        'Year 5': ['Paper 1 Revision','Paper 2 Revision','Comprehension Strategies','Writing Accuracy and Style','Vocabulary in Use','Examination Preparation']
       },
       'Bahasa Melayu': {
-        'Form 4': ['Pemahaman: Teks Pelbagai Genre','Rumusan','Penulisan: Karangan Berformat','Penulisan: Karangan Bebas','Tatabahasa Peringkat Tinggi','Lisan: Sebutan dan Intonasi'],
-        'Form 5': ['Ulangkaji Kertas 1','Ulangkaji Kertas 2','Komsas Lanjutan','Strategi Menjawab Soalan','Latihan Kertas Lepas','Persediaan Peperiksaan']
+        'Year 4': ['Pemahaman: Teks Pelbagai Genre','Rumusan','Penulisan: Karangan Berformat','Penulisan: Karangan Bebas','Tatabahasa Peringkat Tinggi','Lisan: Sebutan dan Intonasi'],
+        'Year 5': ['Ulangkaji Kertas 1','Ulangkaji Kertas 2','Komsas Lanjutan','Strategi Menjawab Soalan','Latihan Kertas Lepas','Persediaan Peperiksaan']
       },
       'Biology': {
-        'Form 4': ['Cell Biology','Nutrition','Respiration','Excretion','Coordination in Plants and Animals'],
-        'Form 5': ['Reproduction','Genetics and Heredity','Evolution','Microorganisms','Biotechnology','Examination Preparation']
+        'Year 4': ['Cell Biology','Nutrition','Respiration','Excretion','Coordination in Plants and Animals'],
+        'Year 5': ['Reproduction','Genetics and Heredity','Evolution','Microorganisms','Biotechnology','Examination Preparation']
       },
       'Chemistry': {
-        'Form 4': ['Atomic Structure and Bonding','Stoichiometry','Acids, Bases and Salts','Oxidation and Reduction','Energetics'],
-        'Form 5': ['The Periodic Table','Metals and Extraction','Organic Chemistry','Electrochemistry','Environmental Chemistry','Examination Preparation']
+        'Year 4': ['Atomic Structure and Bonding','Stoichiometry','Acids, Bases and Salts','Oxidation and Reduction','Energetics'],
+        'Year 5': ['The Periodic Table','Metals and Extraction','Organic Chemistry','Electrochemistry','Environmental Chemistry','Examination Preparation']
       },
       'Physics': {
-        'Form 4': ['Kinematics and Dynamics','Thermal Physics','Waves','Electricity and Magnetism'],
-        'Form 5': ['Nuclear Physics','Light and Optics','Alternating Current','Electronics','Examination Preparation']
+        'Year 4': ['Kinematics and Dynamics','Thermal Physics','Waves','Electricity and Magnetism'],
+        'Year 5': ['Nuclear Physics','Light and Optics','Alternating Current','Electronics','Examination Preparation']
       },
       'Islamic Religious Knowledge': {
-        'Form 4': ['Aqidah Lanjutan','Ibadah dan Muamalat','Fiqh: Kekeluargaan dan Masyarakat','Sirah Nabawi Lanjutan','Al-Quran: Tafsir dan Tadabbur'],
-        'Form 5': ['Ulangkaji Aqidah','Ulangkaji Ibadah','Ulangkaji Fiqh','Akhlak dan Tasawwuf','Persediaan Peperiksaan']
+        'Year 4': ['Aqidah Lanjutan','Ibadah dan Muamalat','Fiqh: Kekeluargaan dan Masyarakat','Sirah Nabawi Lanjutan','Al-Quran: Tafsir dan Tadabbur'],
+        'Year 5': ['Ulangkaji Aqidah','Ulangkaji Ibadah','Ulangkaji Fiqh','Akhlak dan Tasawwuf','Persediaan Peperiksaan']
       },
       'History': {
-        'Form 4': ['Brunei History: Pre-Colonial to Colonial','Brunei Under British Influence','Road to Independence 1984','Nation Building Post-Independence','Wawasan Brunei 2035'],
-        'Form 5': ['Southeast Asia in the 20th Century','Cold War and Its Impact on Asia','ASEAN: Formation and Role','Globalisation','Examination Preparation']
+        'Year 4': ['Brunei History: Pre-Colonial to Colonial','Brunei Under British Influence','Road to Independence 1984','Nation Building Post-Independence','Wawasan Brunei 2035'],
+        'Year 5': ['Southeast Asia in the 20th Century','Cold War and Its Impact on Asia','ASEAN: Formation and Role','Globalisation','Examination Preparation']
       },
       'Geography': {
-        'Form 4': ['Physical Environments: Landforms','Ecosystems and Biomes','Population and Settlement','Economic Geography','Resource Management'],
-        'Form 5': ['Environmental Hazards','Development and Inequality','Globalisation','Brunei in a Global Context','Examination Preparation']
+        'Year 4': ['Physical Environments: Landforms','Ecosystems and Biomes','Population and Settlement','Economic Geography','Resource Management'],
+        'Year 5': ['Environmental Hazards','Development and Inequality','Globalisation','Brunei in a Global Context','Examination Preparation']
       },
       'Commerce': {
-        'Form 4': ['Trade and Commerce Basics','Types of Business','Marketing and Distribution','Financial Services','Insurance'],
-        'Form 5': ['International Trade','Transport and Communication','Consumer Protection','Business Documents','Examination Preparation']
+        'Year 4': ['Trade and Commerce Basics','Types of Business','Marketing and Distribution','Financial Services','Insurance'],
+        'Year 5': ['International Trade','Transport and Communication','Consumer Protection','Business Documents','Examination Preparation']
+      }
+    },
+
+    ALevel: {
+      'Mathematics': {
+        'AS Level': ['Quadratics','Functions','Coordinate Geometry','Circular Measure','Trigonometry','Series and Binomial','Differentiation','Integration','Kinematics','Forces and Equilibrium'],
+        'A2 Level': ['Algebra and Partial Fractions','Logarithmic and Exponential Functions','Advanced Trigonometry','Advanced Differentiation','Advanced Integration','Numerical Solutions','Vectors','Differential Equations','Complex Numbers','Probability Distributions','Hypothesis Testing']
+      },
+      'Further Mathematics': {
+        'AS Level': ['Roots of Polynomials','Rational Functions','Summation of Series','Matrices','Proof by Induction','Complex Numbers','Further Vectors','Hyperbolic Functions'],
+        'A2 Level': ['Further Calculus','Differential Equations','Polar Coordinates','Further Matrices and Eigenvalues','Groups Theory','Further Mechanics','Further Statistics','Continuous Distributions']
+      },
+      'Biology': {
+        'AS Level': ['Cell Structure','Biological Molecules','Enzymes','Cell Membranes and Transport','The Mitotic Cell Cycle','Nucleic Acids and Protein Synthesis','Transport in Plants','Transport in Mammals','Gas Exchange','Infectious Disease','Immunity'],
+        'A2 Level': ['Energy and Respiration','Photosynthesis','Homeostasis','Coordination','Inheritance','Selection and Evolution','Biodiversity and Conservation','Genetic Technology']
+      },
+      'Chemistry': {
+        'AS Level': ['Atomic Structure','Atoms, Molecules and Stoichiometry','Chemical Bonding','States of Matter','Chemical Energetics','Electrochemistry','Equilibria','Reaction Kinetics','The Periodic Table','Group 2 and Group 17','Introduction to Organic Chemistry','Hydrocarbons','Halogen Compounds'],
+        'A2 Level': ['Lattice Energy','Electrochemistry (Advanced)','Further Equilibria','Reaction Kinetics (Advanced)','Transition Elements','Carbonyl Compounds','Carboxylic Acids and Derivatives','Nitrogen Compounds','Polymerisation','Organic Synthesis','Analytical Techniques (NMR, Spectroscopy)']
+      },
+      'Physics': {
+        'AS Level': ['Physical Quantities and Units','Kinematics','Dynamics','Forces, Density and Pressure','Work, Energy and Power','Deformation of Solids','Waves','Superposition','Electricity','D.C. Circuits','Particle Physics'],
+        'A2 Level': ['Motion in a Circle','Gravitational Fields','Oscillations','Thermal Physics','Ideal Gases','Electric Fields','Capacitance','Magnetic Fields','Electromagnetic Induction','Alternating Currents','Quantum Physics','Nuclear Physics','Medical Imaging']
+      },
+      'Economics': {
+        'AS Level': ['Basic Economic Ideas','The Price System and Microeconomy','Demand and Supply','Elasticity','Market Failure','Government Intervention','The Macroeconomy','Aggregate Demand and Supply','Inflation and Unemployment','International Trade and the Balance of Payments'],
+        'A2 Level': ['Utility and Indifference Curves','Costs and Revenue','Market Structures','Labour Market','Market Failure (Advanced)','National Income and Growth','Economic Policy','Fiscal and Monetary Policy','Exchange Rates','Globalisation and Development']
+      },
+      'Business': {
+        'AS Level': ['Enterprise','Business Structure','Size of Business','Business Objectives','Stakeholders','Human Resource Management','Motivation','Marketing','Marketing Mix','Operations Management','Finance and Accounting Basics'],
+        'A2 Level': ['Business Strategy','External Influences','Strategic Management','Human Resource Strategy','Marketing Strategy','Operations Strategy','Financial Strategy and Ratio Analysis','Investment Appraisal','Change Management']
+      },
+      'Accounting': {
+        'AS Level': ['The Accounting Equation','Double Entry Bookkeeping','Trial Balance','Financial Statements','Accruals and Prepayments','Depreciation','Bad Debts','Bank Reconciliation','Control Accounts','Correction of Errors'],
+        'A2 Level': ['Partnership Accounts','Limited Company Accounts','Cash Flow Statements','Ratio Analysis and Interpretation','Manufacturing Accounts','Costing Methods','Marginal and Absorption Costing','Budgeting','Investment Appraisal','Standard Costing']
+      },
+      'History': {
+        'AS Level': ['Modern European History','The French Revolution','Industrial Revolution','Liberalism and Nationalism','International Relations 1871-1918','World War I','The Russian Revolution','Interwar Years'],
+        'A2 Level': ['World War II','The Cold War','Decolonisation','United States History','Southeast Asian History','Historical Interpretation and Sources','Document Analysis','Examination Essay Skills']
+      },
+      'Geography': {
+        'AS Level': ['Hydrology and Fluvial Geomorphology','Atmosphere and Weather','Rocks and Weathering','Population','Migration','Settlement Dynamics','Coastal Environments'],
+        'A2 Level': ['Tropical Environments','Hazardous Environments','Arid and Semi-Arid Environments','Production, Location and Change','Environmental Management','Global Interdependence','Economic Transition','Fieldwork and Investigation']
+      },
+      'English Literature': {
+        'AS Level': ['Poetry Analysis','Prose Study','Drama Study','Unseen Texts','Critical Reading','Contextual Analysis','Essay Writing Techniques'],
+        'A2 Level': ['Shakespeare in Depth','Comparative Literature','Pre-1900 Texts','Poetry and Prose (Advanced)','Literary Criticism and Theory','Coursework and Extended Essays','Synoptic Analysis']
+      },
+      'Computer Science': {
+        'AS Level': ['Information Representation','Data Transmission','Hardware','Processor Fundamentals','System Software','Security, Privacy and Data Integrity','Ethics and Ownership','Database and Data Modelling','Algorithm Design','Programming Fundamentals'],
+        'A2 Level': ['Data Representation (Advanced)','Communication and Networking','Hardware and Virtual Machines','System Software (Advanced)','Boolean Algebra and Logic','Computational Thinking','Further Programming','Object-Oriented Programming','Recursion','Exam Preparation']
       }
     }
   };
@@ -1058,11 +1068,15 @@ const HTML = `<!DOCTYPE html>
     });
 
     // Update levels based on syllabus track
-    const allLevels = ['Form 1','Form 2','Form 3','Form 4','Form 5'];
-    // IGCSE and O-Level only have Form 4-5 chapters; SPN21 has Form 1-5
-    const levels = (selectedSyllabus === 'SPN21')
-      ? allLevels
-      : ['Form 4','Form 5'];
+    let levels;
+    if (selectedSyllabus === 'SPN21') {
+      levels = ['Year 1','Year 2','Year 3','Year 4','Year 5'];
+    } else if (selectedSyllabus === 'ALevel') {
+      levels = ['AS Level','A2 Level'];
+    } else {
+      // IGCSE and O-Level
+      levels = ['Year 4','Year 5'];
+    }
 
     levelEl.innerHTML = '<option value="">— Pick level —</option>';
     levels.forEach(l => {
@@ -1177,6 +1191,31 @@ const HTML = `<!DOCTYPE html>
   });
 
   // ── GENERATE ──
+  function renderMarkdown(text) {
+    return text
+      // Headers
+      .replace(/^### (.+)$/gm, '<h3 style="font-size:15px;font-weight:700;margin:20px 0 8px;color:#0d0d0d;">$1</h3>')
+      .replace(/^## (.+)$/gm, '<h2 style="font-size:18px;font-weight:700;margin:24px 0 10px;color:#0d0d0d;">$1</h2>')
+      .replace(/^# (.+)$/gm, '<h1 style="font-size:22px;font-weight:700;margin:0 0 16px;color:#0d0d0d;">$1</h1>')
+      // Bold and italic
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      // Horizontal rules
+      .replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid #e0dbd2;margin:16px 0;">')
+      // Bullet points
+      .replace(/^- (.+)$/gm, '<div style="padding:3px 0 3px 20px;position:relative;"><span style="position:absolute;left:6px;">•</span>$1</div>')
+      // Underline blanks
+      .replace(/_{3,}/g, '<span style="display:inline-block;min-width:120px;border-bottom:1.5px solid #0d0d0d;">&nbsp;</span>')
+      // Checkboxes
+      .replace(/\[ \]/g, '<span style="display:inline-block;width:16px;height:16px;border:1.5px solid #0d0d0d;border-radius:3px;margin-right:6px;vertical-align:middle;"></span>')
+      // Line breaks
+      .replace(/\n\n/g, '</p><p style="margin:0 0 10px;">')
+      .replace(/\n/g, '<br>')
+      // Wrap in paragraph
+      .replace(/^/, '<p style="margin:0 0 10px;">')
+      .replace(/$/, '</p>');
+  }
+
   async function generateWorksheet() {
     const subject = document.getElementById('subject').value;
     const level = document.getElementById('level').value;
@@ -1279,8 +1318,8 @@ Make it comprehensive, educationally sound, and Brunei curriculum-relevant.\`;
 
       if (!data.worksheet) throw new Error('No content returned. Please try again.');
 
-      worksheetBody.style.whiteSpace = 'pre-wrap';
-      worksheetBody.textContent = data.worksheet;
+      worksheetBody.style.whiteSpace = 'normal';
+      worksheetBody.innerHTML = renderMarkdown(data.worksheet);
 
     } catch (err) {
       worksheetBody.innerHTML = \`
@@ -1300,7 +1339,7 @@ Make it comprehensive, educationally sound, and Brunei curriculum-relevant.\`;
 
   // ── COPY ──
   async function copyWorksheet() {
-    const text = document.getElementById('worksheetBody').textContent;
+    const text = document.getElementById('worksheetBody').innerText;
     if (!text || text.includes('loading-state')) return;
     try {
       await navigator.clipboard.writeText(text);
@@ -1316,7 +1355,7 @@ Make it comprehensive, educationally sound, and Brunei curriculum-relevant.\`;
   function printWorksheet() {
     const title = document.getElementById('wsTitle').textContent;
     const meta = document.getElementById('wsMeta').textContent;
-    const body = document.getElementById('worksheetBody').textContent;
+    const body = document.getElementById('worksheetBody').innerHTML;
     if (!body || body.includes('loading-state')) return;
 
     const printWin = window.open('', '_blank');
@@ -1386,6 +1425,10 @@ app.post('/api/generate', async (req, res) => {
     if (!text) return res.status(500).json({ error: 'Empty response. Try again.' });
     res.json({ worksheet: text });
   } catch (err) { res.status(500).json({ error: err.message || 'Server error.' }); }
+});
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Not found' });
 });
 
 app.listen(PORT, () => console.log('Grade Maxing live on port ' + PORT));
