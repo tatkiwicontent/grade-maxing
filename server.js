@@ -624,7 +624,7 @@ const HTML = `<!DOCTYPE html>
   .error-msg.visible { display: block; }
 
   /* ── SYLLABUS BUTTONS ── */
-  .syllabus-btn {
+  .syllabus-btn { 
     padding: 14px 10px;
     font-family: 'DM Sans', sans-serif;
     font-size: 13px;
@@ -638,6 +638,7 @@ const HTML = `<!DOCTYPE html>
     text-align: center;
     line-height: 1.3;
   }
+  .syllabus-btn * { pointer-events: none; }
 
   .syllabus-btn:hover { border-color: var(--ink); color: var(--ink); }
 
@@ -845,7 +846,9 @@ const HTML = `<!DOCTYPE html>
   // ── SYLLABUS TRACK ──
   let selectedSyllabus = 'SPN21';
 
-  function selectSyllabus(btn) {
+  function selectSyllabus(el) {
+    const btn = el.closest('.syllabus-btn');
+    if (!btn) return;
     document.querySelectorAll('.syllabus-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     selectedSyllabus = btn.dataset.syllabus;
